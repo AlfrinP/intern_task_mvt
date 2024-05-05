@@ -1,0 +1,58 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <title>Home</title>
+  </head>
+  <body>
+    <nav>
+      <form action="{% url 'signout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+    </nav>
+    <div class="wrapper">
+      <h2>ToDo List</h2>
+      <a href="{% url 'create_task' %}">create</a>
+      <div>
+        <h3>Pending</h3>
+        <ul>
+          {% for i in pending_tasks %}
+          <li>
+            <a href="{% url 'mark_as_done' i.id %}"><button>Done</button></a>{{i}}<a href="{% url 'delete_task' i.id %}"><button>Delete</button></a> <a href="{% url 'update_task' i.id %}"><button>Edit</button></a></a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>Completed</h3>
+        <ul>
+          {% for i in completed_tasks %}
+          <li>
+            <a href="{% url 'mark_as_undone' i.id %}"><button>Revert</button></a
+            >{{i}}<a href="{% url 'delete_task' i.id %}"
+              ><button>Delete</button></a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>Expired</h3>
+        <ul>
+          {% for i in not_completed_tasks %}
+          <li>
+            <a href="{% url 'mark_as_done' i.id %}"><button>Done</button></a
+            >{{i}}<a href="{% url 'delete_task' i.id %}"
+              ><button>Delete</button></a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

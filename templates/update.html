@@ -1,0 +1,32 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <title>Update</title>
+</head>
+<body>
+  <nav>
+    <form action="{% url 'signout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </nav>
+
+  <form class="wrapper" method="post">
+    {% csrf_token %}
+    <h2>Update Task</h2>
+    <div class="task-input">
+      <label for="task_name">Task Title</label>
+      <input id="task_name" type="text" name="title" placeholder="Enter updated task title" value="{{ task.title }}">
+    </div>
+    <div class="task-input">
+      <label for="completion_date">Completion Date</label>
+      <input id="completion_date" type="date" name="completion_date" value="{{ task.completion_date }}">
+    </div>
+    <button type="submit">Update</button>
+  </form>
+</body>
+</html>
