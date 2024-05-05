@@ -1,34 +1,25 @@
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-    <title>Create</title>
-  </head>
-  <body>
-    <nav>
-      <form action="{% url 'signout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="logout-btn">Logout</button>
-      </form>
-    </nav>
-    <form class="wrapper" action="{% url 'create_task' %}" method="post">
-      {% csrf_token %}
-      <div class="task-input">
-        <label>Task Name</label>
-        <input type="text" placeholder="Add a New Task" name="task_name" />
-      </div>
-      <div class="task-input">
-        <label>Completition Date</label>
-        <input
-          type="date"
-          placeholder="Enter Completition Date"
-          name="completition_date"
-        />
-      </div>
-      <button type="submit">Create</button>
-    </form>
-  </body>
-</html>
+{% extends "base.html" %}{% load static %} {% block style %}<link rel="stylesheet" href="{% static 'css/todo.css' %}"/>{% endblock style %}{% block title %}Create{% endblock title %} {% block body %}
+<nav>
+  <form action="{% url 'signout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="logout-btn">Logout</button>
+  </form>
+</nav>
+<form class="wrapper" action="{% url 'create_task' %}" method="post">
+  {% csrf_token %}
+  <div class="input-box">
+    <input type="text" name="username" placeholder="Enter Task title" required>
+  </div>
+  <div class="input-box">
+    <label>Completition Date</label>
+    <input
+      type="date"
+      placeholder="Enter Completition Date"
+      name="completition_date"
+    />
+  </div>
+  <div class="input-box button">
+  <input type="submit" value="Create"/>
+  </div>
+</form>
+{% endblock %}

@@ -1,13 +1,5 @@
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-    <title>Home</title>
-  </head>
-  <body>
+{% extends "base.html" %}{% load static %} {% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock style %}{% block title %}Home{% endblock title %} {% block body %}
     <nav>
       <form action="{% url 'signout' %}" method="post">
         {% csrf_token %}
@@ -54,5 +46,4 @@
         </ul>
       </div>
     </div>
-  </body>
-</html>
+    {% endblock %}
