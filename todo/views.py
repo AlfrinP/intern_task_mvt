@@ -36,7 +36,7 @@ def home(request):
 @login_required(login_url="/signin")
 def createTask(request):
     if request.method == 'POST':
-        name = request.POST.get('task_name')
+        name = request.POST.get('title')
         date = request.POST.get('completition_date')
         tasks = Task.objects.create(
             title=name,completion_date=date, user=request.user)

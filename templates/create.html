@@ -8,7 +8,7 @@
 <form class="wrapper" action="{% url 'create_task' %}" method="post">
   {% csrf_token %}
   <div class="input-box">
-    <input type="text" name="username" placeholder="Enter Task title" required>
+    <input type="text" name="title" placeholder="Enter Task title" required>
   </div>
   <div class="input-box">
     <label>Completition Date</label>
