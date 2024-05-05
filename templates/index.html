@@ -1,49 +1,84 @@
-{% extends "base.html" %}{% load static %} {% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}" />
-{% endblock style %}{% block title %}Home{% endblock title %} {% block body %}
-    <nav>
-      <form action="{% url 'signout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="logout-btn">Logout</button>
-      </form>
-    </nav>
-    <div class="wrapper">
+{% extends "base.html" %}{% load static %} {% block style %}<link
+  rel="stylesheet"
+  href="{% static 'css/home.css' %}"
+/>{% endblock style %}{% block title %}Home{% endblock title %} {% block body %}
+<nav>
+  <form action="{% url 'signout' %}" method="post">
+    {% csrf_token %}
+    <span>{{user|capfirst}}</span>
+    <button type="submit" class="logout-btn">Logout</button>
+  </form>
+</nav>
+<div class="wrapper">
+  <div class="wrapper_next">
+    <div class="title">
       <h2>ToDo List</h2>
-      <a href="{% url 'create_task' %}">create</a>
-      <div>
-        <h3>Pending</h3>
-        <ul>
-          {% for i in pending_tasks %}
-          <li>
-            <a href="{% url 'mark_as_done' i.id %}"><button>Done</button></a>{{i}}<a href="{% url 'delete_task' i.id %}"><button>Delete</button></a> <a href="{% url 'update_task' i.id %}"><button>Edit</button></a></a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div>
-        <h3>Completed</h3>
-        <ul>
-          {% for i in completed_tasks %}
-          <li>
-            <a href="{% url 'mark_as_undone' i.id %}"><button>Revert</button></a
-            >{{i}}<a href="{% url 'delete_task' i.id %}"
-              ><button>Delete</button></a
-            >
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div>
-        <h3>Expired</h3>
-        <ul>
-          {% for i in not_completed_tasks %}
-          <li>
-            <a href="{% url 'mark_as_done' i.id %}"><button>Done</button></a
-            >{{i}}<a href="{% url 'delete_task' i.id %}"
-              ><button>Delete</button></a
-            >
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
+      <a href="{% url 'create_task' %}"><img src="{% static 'icons/plus.svg' %}"/></a>
     </div>
-    {% endblock %}
+
+    <div class="main">
+      <h3>Pending</h3>
+      <ul>
+        {% for i in pending_tasks %}
+        <li>
+          <div class="content"><span>{{ forloop.counter }}.</span>{{i}}</div>
+          <div class="buttons">
+            <a href="{% url 'mark_as_done' i.id %}"
+              ><img src="{% static 'icons/done.svg' %}"
+            /></a>
+            <a href="{% url 'update_task' i.id %}"
+              ><img src="{% static 'icons/edit.svg' %}"
+            /></a>
+            <a href="{% url 'delete_task' i.id %}"
+              ><img src="{% static 'icons/delete.svg' %}"
+            /></a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="main">
+      <h3>Completed</h3>
+      <ul>
+        {% for i in completed_tasks %}
+        <li>
+          <div class="content"><span>{{ forloop.counter }}.</span>{{i}}</div>
+          <div class="buttons">
+            <a href="{% url 'mark_as_undone' i.id %}"
+              ><img src="{% static 'icons/revert.svg' %}"
+            /></a>
+            <a href="{% url 'update_task' i.id %}"
+              ><img src="{% static 'icons/edit.svg' %}"
+            /></a>
+            <a href="{% url 'delete_task' i.id %}"
+              ><img src="{% static 'icons/delete.svg' %}"
+            /></a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="main">
+      <h3>Expired</h3>
+      <ul>
+        {% for i in not_completed_tasks %}
+        <li>
+          <div class="content"><span>{{ forloop.counter }}.</span>{{i}}</div>
+          <div class="buttons">
+            <a href="{% url 'mark_as_done' i.id %}"
+              ><img src="{% static 'icons/done.svg' %}"
+            /></a>
+            <a href="{% url 'update_task' i.id %}"
+              ><img src="{% static 'icons/edit.svg' %}"
+            /></a>
+            <a href="{% url 'delete_task' i.id %}"
+              ><img src="{% static 'icons/delete.svg' %}"
+            /></a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
