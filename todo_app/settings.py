@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-71#409pt-(x*11f(8bch&y^yh1uz67xog!qs3^02m$-)v&wfoz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = []
 
 
 
@@ -83,17 +83,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'uYbRTrlSJKBQjPhRQsgpPbnYamnzBHOc',
-#         'HOST': 'viaduct.proxy.rlwy.net',
-#         'PORT': '16750',
-#     }
-# }
 
 
 # Password validation
