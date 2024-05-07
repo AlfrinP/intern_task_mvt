@@ -2,13 +2,7 @@
   rel="stylesheet"
   href="{% static 'css/home.css' %}"
 />{% endblock style %}{% block title %}Home{% endblock title %} {% block body %}
-<nav>
-  <form action="{% url 'signout' %}" method="post">
-    {% csrf_token %}
-    <span>{{user|capfirst}}</span>
-    <button type="submit" class="logout-btn">Logout</button>
-  </form>
-</nav>
+{% include 'navbar.html' %}
 <div class="wrapper">
   <div class="wrapper_next">
     <div class="title">

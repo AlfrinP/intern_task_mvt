@@ -1,0 +1,7 @@
+<nav>
+  <form action="{% url 'signout' %}" method="post">
+    {% csrf_token %}
+    <span>{{user|capfirst}}</span>
+    <button type="submit" class="logout-btn">Logout</button>
+  </form>
+</nav>
